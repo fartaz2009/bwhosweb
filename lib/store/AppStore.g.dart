@@ -6,10 +6,11 @@ part of 'AppStore.dart';
 // StoreGenerator
 // **************************************************************************
 
-// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$AppStore on AppStoreBase, Store {
-  final _$isDarkModeOnAtom = Atom(name: 'AppStoreBase.isDarkModeOn');
+  late final _$isDarkModeOnAtom =
+      Atom(name: 'AppStoreBase.isDarkModeOn', context: context);
 
   @override
   bool? get isDarkModeOn {
@@ -24,8 +25,8 @@ mixin _$AppStore on AppStoreBase, Store {
     });
   }
 
-  final _$isNetworkAvailableAtom =
-      Atom(name: 'AppStoreBase.isNetworkAvailable');
+  late final _$isNetworkAvailableAtom =
+      Atom(name: 'AppStoreBase.isNetworkAvailable', context: context);
 
   @override
   bool get isNetworkAvailable {
@@ -40,7 +41,8 @@ mixin _$AppStore on AppStoreBase, Store {
     });
   }
 
-  final _$primaryColorsAtom = Atom(name: 'AppStoreBase.primaryColors');
+  late final _$primaryColorsAtom =
+      Atom(name: 'AppStoreBase.primaryColors', context: context);
 
   @override
   Color get primaryColors {
@@ -55,7 +57,8 @@ mixin _$AppStore on AppStoreBase, Store {
     });
   }
 
-  final _$loaderValuesAtom = Atom(name: 'AppStoreBase.loaderValues');
+  late final _$loaderValuesAtom =
+      Atom(name: 'AppStoreBase.loaderValues', context: context);
 
   @override
   String? get loaderValues {
@@ -70,7 +73,7 @@ mixin _$AppStore on AppStoreBase, Store {
     });
   }
 
-  final _$urlAtom = Atom(name: 'AppStoreBase.url');
+  late final _$urlAtom = Atom(name: 'AppStoreBase.url', context: context);
 
   @override
   String? get url {
@@ -85,7 +88,8 @@ mixin _$AppStore on AppStoreBase, Store {
     });
   }
 
-  final _$currentIndexAtom = Atom(name: 'AppStoreBase.currentIndex');
+  late final _$currentIndexAtom =
+      Atom(name: 'AppStoreBase.currentIndex', context: context);
 
   @override
   int get currentIndex {
@@ -100,8 +104,8 @@ mixin _$AppStore on AppStoreBase, Store {
     });
   }
 
-  final _$selectedLanguageCodeAtom =
-      Atom(name: 'AppStoreBase.selectedLanguageCode');
+  late final _$selectedLanguageCodeAtom =
+      Atom(name: 'AppStoreBase.selectedLanguageCode', context: context);
 
   @override
   String? get selectedLanguageCode {
@@ -117,7 +121,8 @@ mixin _$AppStore on AppStoreBase, Store {
     });
   }
 
-  final _$isLoadingAtom = Atom(name: 'AppStoreBase.isLoading');
+  late final _$isLoadingAtom =
+      Atom(name: 'AppStoreBase.isLoading', context: context);
 
   @override
   bool get isLoading {
@@ -132,7 +137,8 @@ mixin _$AppStore on AppStoreBase, Store {
     });
   }
 
-  final _$mTabListAtom = Atom(name: 'AppStoreBase.mTabList');
+  late final _$mTabListAtom =
+      Atom(name: 'AppStoreBase.mTabList', context: context);
 
   @override
   List<TabsResponse> get mTabList {
@@ -147,7 +153,8 @@ mixin _$AppStore on AppStoreBase, Store {
     });
   }
 
-  final _$mFABListAtom = Atom(name: 'AppStoreBase.mFABList');
+  late final _$mFABListAtom =
+      Atom(name: 'AppStoreBase.mFABList', context: context);
 
   @override
   List<FloatingButton> get mFABList {
@@ -162,7 +169,8 @@ mixin _$AppStore on AppStoreBase, Store {
     });
   }
 
-  final _$mOnBoardListAtom = Atom(name: 'AppStoreBase.mOnBoardList');
+  late final _$mOnBoardListAtom =
+      Atom(name: 'AppStoreBase.mOnBoardList', context: context);
 
   @override
   List<Walkthrough> get mOnBoardList {
@@ -177,8 +185,8 @@ mixin _$AppStore on AppStoreBase, Store {
     });
   }
 
-  final _$mBottomNavigationListAtom =
-      Atom(name: 'AppStoreBase.mBottomNavigationList');
+  late final _$mBottomNavigationListAtom =
+      Atom(name: 'AppStoreBase.mBottomNavigationList', context: context);
 
   @override
   List<MenuStyleModel> get mBottomNavigationList {
@@ -194,7 +202,8 @@ mixin _$AppStore on AppStoreBase, Store {
     });
   }
 
-  final _$mPageListAtom = Atom(name: 'AppStoreBase.mPageList');
+  late final _$mPageListAtom =
+      Atom(name: 'AppStoreBase.mPageList', context: context);
 
   @override
   List<TabsResponse> get mPageList {
@@ -209,7 +218,8 @@ mixin _$AppStore on AppStoreBase, Store {
     });
   }
 
-  final _$mMenuListAtom = Atom(name: 'AppStoreBase.mMenuList');
+  late final _$mMenuListAtom =
+      Atom(name: 'AppStoreBase.mMenuList', context: context);
 
   @override
   List<MenuStyleModel> get mMenuList {
@@ -224,7 +234,8 @@ mixin _$AppStore on AppStoreBase, Store {
     });
   }
 
-  final _$deepLinkURLAtom = Atom(name: 'AppStoreBase.deepLinkURL');
+  late final _$deepLinkURLAtom =
+      Atom(name: 'AppStoreBase.deepLinkURL', context: context);
 
   @override
   String? get deepLinkURL {
@@ -239,8 +250,8 @@ mixin _$AppStore on AppStoreBase, Store {
     });
   }
 
-  final _$toggleDarkModeAsyncAction =
-      AsyncAction('AppStoreBase.toggleDarkMode');
+  late final _$toggleDarkModeAsyncAction =
+      AsyncAction('AppStoreBase.toggleDarkMode', context: context);
 
   @override
   Future<void> toggleDarkMode({bool? value}) {
@@ -248,7 +259,8 @@ mixin _$AppStore on AppStoreBase, Store {
         .run(() => super.toggleDarkMode(value: value));
   }
 
-  final _$setDarkModeAsyncAction = AsyncAction('AppStoreBase.setDarkMode');
+  late final _$setDarkModeAsyncAction =
+      AsyncAction('AppStoreBase.setDarkMode', context: context);
 
   @override
   Future<void> setDarkMode({bool? aIsDarkMode}) {
@@ -256,7 +268,8 @@ mixin _$AppStore on AppStoreBase, Store {
         .run(() => super.setDarkMode(aIsDarkMode: aIsDarkMode));
   }
 
-  final _$setLanguageAsyncAction = AsyncAction('AppStoreBase.setLanguage');
+  late final _$setLanguageAsyncAction =
+      AsyncAction('AppStoreBase.setLanguage', context: context);
 
   @override
   Future<void> setLanguage(String? aSelectedLanguageCode) {
@@ -264,7 +277,8 @@ mixin _$AppStore on AppStoreBase, Store {
         .run(() => super.setLanguage(aSelectedLanguageCode));
   }
 
-  final _$AppStoreBaseActionController = ActionController(name: 'AppStoreBase');
+  late final _$AppStoreBaseActionController =
+      ActionController(name: 'AppStoreBase', context: context);
 
   @override
   void setLoading(bool val) {

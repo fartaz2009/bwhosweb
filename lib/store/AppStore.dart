@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
-import '../model/MainResponse.dart';
-import '../utils/constant.dart';
 import 'package:mobx/mobx.dart';
 import 'package:nb_utils/nb_utils.dart';
+import '../model/MainResponse.dart';
+import '../utils/constant.dart';
 import '../main.dart';
-import '../utils/colors.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+
 part 'AppStore.g.dart';
 
 class AppStore = AppStoreBase with _$AppStore;
 
 abstract class AppStoreBase with Store {
+  @observable
+  bool isDarkModeOn = false;
 
   @observable
-  bool? isDarkModeOn = false;
+  bool isNetworkAvailable = true;
 
   @observable
-  bool isNetworkAvailable = false;
+  Color primaryColors = Color(int.parse(APP_DEFAULT_PRIMARY_COLOR.replaceAll('#', '0xFF')));
 
   @observable
-  Color primaryColors = primaryColor1;
-
-  @observable
-  String? loaderValues='';
+  String? loaderValues = '';
 
   @observable
   String? url;
 
   @observable
-  int currentIndex=0;
+  int currentIndex = 0;
 
   @observable
   String? selectedLanguageCode;
@@ -36,22 +36,25 @@ abstract class AppStoreBase with Store {
   bool isLoading = false;
 
   @observable
-  List<TabsResponse> mTabList = ObservableList<TabsResponse>();
+  ObservableList<TabsResponse> mTabList = ObservableList<TabsResponse>();
 
   @observable
-  List<FloatingButton> mFABList = ObservableList<FloatingButton>();
+  ObservableList<FloatingButton> mFABList = ObservableList<FloatingButton>();
 
   @observable
-  List<Walkthrough> mOnBoardList = ObservableList<Walkthrough>();
+  ObservableList<Walkthrough> mOnBoardList = ObservableList<Walkthrough>();
 
   @observable
-  List<MenuStyleModel> mBottomNavigationList = ObservableList<MenuStyleModel>();
+  ObservableList<MenuStyleModel> mBottomNavigationList = ObservableList<MenuStyleModel>();
 
   @observable
-  List<TabsResponse> mPageList = ObservableList<TabsResponse>();
+  ObservableList<TabsResponse> mPageList = ObservableList<TabsResponse>();
 
   @observable
-  List<MenuStyleModel> mMenuList = ObservableList<MenuStyleModel>();
+  ObservableList<MenuStyleModel> mMenuList = ObservableList<MenuStyleModel>();
+
+  @computed
+  bool get isDarkMode => isDarkModeOn;
 
   @action
   void setLoading(bool val) {
@@ -65,7 +68,9 @@ abstract class AppStoreBase with Store {
 
   @action
   Future<void> toggleDarkMode({bool? value}) async {
-    isDarkModeOn = value ?? !isDarkModeOn!;
+    isDarkModeOn = value ?? !isDarkModeOn;
+    await setValue(isDarkModeOnPref, isDarkModeOn);
+    setStatusBarColor(primaryColors);
   }
 
   @observable
@@ -75,7 +80,7 @@ abstract class AppStoreBase with Store {
   void setDeepLinkURL(String val) {
     deepLinkURL = val;
   }
-  
+
   @action
   void addToTabList(TabsResponse val) {
     mTabList.add(val);
@@ -90,14 +95,14 @@ abstract class AppStoreBase with Store {
   void addToOnBoardList(Walkthrough val) {
     mOnBoardList.add(val);
   }
-  
+
   @action
   void addToFabList(FloatingButton val) {
     mFABList.add(val);
   }
 
   @action
-  void addToBottomNavigationLis(MenuStyleModel val) {
+  void addToBottomNavigationList(MenuStyleModel val) {
     mBottomNavigationList.add(val);
   }
 
@@ -108,17 +113,9 @@ abstract class AppStoreBase with Store {
 
   @action
   Future<void> setDarkMode({bool? aIsDarkMode}) async {
-    isDarkModeOn = aIsDarkMode;
-
-    if (isDarkModeOn!) {
-      textPrimaryColorGlobal = Colors.white;
-      textSecondaryColorGlobal = Colors.white70;
-    } else {
-      textPrimaryColorGlobal = textColorPrimary;
-      textSecondaryColorGlobal =  textColorSecondary;
-    }
-    await setValue(isDarkModeOnPref, isDarkModeOn!);
-    setStatusBarColor(appStore.primaryColors);
+    isDarkModeOn = aIsDarkMode ?? false;
+    await setValue(isDarkModeOnPref, isDarkModeOn);
+    setStatusBarColor(primaryColors);
   }
 
   @action
@@ -144,7 +141,6 @@ abstract class AppStoreBase with Store {
   @action
   Future<void> setLanguage(String? aSelectedLanguageCode) async {
     selectedLanguageCode = aSelectedLanguageCode;
-    setValue(APP_LANGUAGE, aSelectedLanguageCode);
+    await setValue(APP_LANGUAGE, aSelectedLanguageCode);
   }
-
 }

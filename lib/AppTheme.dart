@@ -1,76 +1,82 @@
 import 'package:flutter/material.dart';
-    import 'package:nb_utils/nb_utils.dart';
+import 'package:nb_utils/nb_utils.dart';
+import '../utils/constant.dart';
+import '../main.dart';
 
-    import '../utils/constant.dart';
+ThemeData lightTheme() {
+  final primaryColor = Color(int.parse((appConfig['splash_configuration']?['first_color'] ?? APP_DEFAULT_PRIMARY_COLOR).replaceAll('#', '0xFF')));
+  final secondaryColor = Color(int.parse((appConfig['splash_configuration']?['second_color'] ?? APP_DEFAULT_SECONDARY_COLOR).replaceAll('#', '0xFF')));
 
-    ThemeData lightTheme() {
-      return ThemeData(
-        primarySwatch: createMaterialColor(getStringAsync(PRIMARY_COLOR, defaultValue: defaultPrimaryColor).toColor()),
-        scaffoldBackgroundColor: Colors.white,
-        fontFamily: 'Poppins',
-        iconTheme: IconThemeData(color: Colors.black),
-        textTheme: TextTheme(
-          bodyLarge: TextStyle(color: Colors.black87),
-          bodyMedium: TextStyle(color: Colors.black87),
-        ),
-        colorScheme: ColorScheme.light(
-          primary: createMaterialColor(getStringAsync(PRIMARY_COLOR, defaultValue: defaultPrimaryColor).toColor()),
-          secondary: createMaterialColor(getStringAsync(SECONDARY_COLOR, defaultValue: defaultSecondaryColor).toColor()),
-        ),
-        dialogBackgroundColor: Colors.white,
-        dividerColor: Colors.grey.shade200,
-        cardColor: Colors.white,
-        appBarTheme: AppBarTheme(
-          backgroundColor: Colors.white,
-          elevation: 0.5,
-          iconTheme: IconThemeData(color: Colors.black),
-          titleTextStyle: TextStyle(color: Colors.black87, fontSize: 18, fontWeight: FontWeight.w600),
-        ),
-      );
-    }
+  return ThemeData(
+    primarySwatch: createMaterialColor(primaryColor),
+    scaffoldBackgroundColor: Colors.white,
+    fontFamily: 'Poppins',
+    iconTheme: const IconThemeData(color: Colors.black),
+    textTheme: const TextTheme(
+      bodyLarge: TextStyle(color: Colors.black87),
+      bodyMedium: TextStyle(color: Colors.black87),
+    ),
+    colorScheme: ColorScheme.light(
+      primary: primaryColor,
+      secondary: secondaryColor,
+    ),
+    dialogBackgroundColor: Colors.white,
+    dividerColor: Colors.grey.shade200,
+    cardColor: Colors.white,
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.white,
+      elevation: 0.5,
+      iconTheme: IconThemeData(color: Colors.black),
+      titleTextStyle: TextStyle(color: Colors.black87, fontSize: 18, fontWeight: FontWeight.w600),
+    ),
+  );
+}
 
-    ThemeData darkTheme() {
-      return ThemeData(
-        primarySwatch: createMaterialColor(getStringAsync(PRIMARY_COLOR, defaultValue: defaultPrimaryColor).toColor()),
-        scaffoldBackgroundColor: scaffoldDarkColor,
-        fontFamily: 'Poppins',
-        iconTheme: IconThemeData(color: Colors.white),
-        textTheme: TextTheme(
-          bodyLarge: TextStyle(color: Colors.white70),
-          bodyMedium: TextStyle(color: Colors.white70),
-        ),
-        colorScheme: ColorScheme.dark(
-          primary: createMaterialColor(getStringAsync(PRIMARY_COLOR, defaultValue: defaultPrimaryColor).toColor()),
-          secondary: createMaterialColor(getStringAsync(SECONDARY_COLOR, defaultValue: defaultSecondaryColor).toColor()),
-        ),
-        dialogBackgroundColor: scaffoldDarkColor,
-        dividerColor: Colors.white12,
-        cardColor: cardDarkColor,
-        appBarTheme: AppBarTheme(
-          backgroundColor: scaffoldDarkColor,
-          elevation: 0.5,
-          iconTheme: IconThemeData(color: Colors.white),
-          titleTextStyle: TextStyle(color: Colors.white70, fontSize: 18, fontWeight: FontWeight.w600),
-        ),
-      );
-    }
+ThemeData darkTheme() {
+  final primaryColor = Color(int.parse((appConfig['splash_configuration']?['first_color'] ?? APP_DEFAULT_PRIMARY_COLOR).replaceAll('#', '0xFF')));
+  final secondaryColor = Color(int.parse((appConfig['splash_configuration']?['second_color'] ?? APP_DEFAULT_SECONDARY_COLOR).replaceAll('#', '0xFF')));
 
-    MaterialColor createMaterialColor(Color color) {
-      List strengths = <double>[.05];
-      Map<int, Color> swatch = {};
-      final int r = color.red, g = color.green, b = color.blue;
+  return ThemeData(
+    primarySwatch: createMaterialColor(primaryColor),
+    scaffoldBackgroundColor: Color(int.parse(APP_SCAFFOLD_DARK_COLOR.replaceAll('#', '0xFF'))),
+    fontFamily: 'Poppins',
+    iconTheme: const IconThemeData(color: Colors.white),
+    textTheme: const TextTheme(
+      bodyLarge: TextStyle(color: Colors.white70),
+      bodyMedium: TextStyle(color: Colors.white70),
+    ),
+    colorScheme: ColorScheme.dark(
+      primary: primaryColor,
+      secondary: secondaryColor,
+    ),
+    dialogBackgroundColor: Color(int.parse(APP_SCAFFOLD_DARK_COLOR.replaceAll('#', '0xFF'))),
+    dividerColor: Colors.white12,
+    cardColor: Color(int.parse(APP_CARD_DARK_COLOR.replaceAll('#', '0xFF'))),
+    appBarTheme: AppBarTheme(
+      backgroundColor: Color(int.parse(APP_SCAFFOLD_DARK_COLOR.replaceAll('#', '0xFF'))),
+      elevation: 0.5,
+      iconTheme: const IconThemeData(color: Colors.white),
+      titleTextStyle: const TextStyle(color: Colors.white70, fontSize: 18, fontWeight: FontWeight.w600),
+    ),
+  );
+}
 
-      for (int i = 1; i < 10; i++) {
-        strengths.add(0.1 * i);
-      }
-      for (var strength in strengths) {
-        final double ds = 0.5 - strength;
-        swatch[(strength * 1000).round()] = Color.fromRGBO(
-          r + ((ds < 0 ? r : (255 - r)) * ds).round(),
-          g + ((ds < 0 ? g : (255 - g)) * ds).round(),
-          b + ((ds < 0 ? b : (255 - b)) * ds).round(),
-          1,
-        );
-      }
-      return MaterialColor(color.value, swatch);
-    }
+MaterialColor createMaterialColor(Color color) {
+  List strengths = <double>[.05];
+  Map<int, Color> swatch = {};
+  final int r = color.red, g = color.green, b = color.blue;
+
+  for (int i = 1; i < 10; i++) {
+    strengths.add(0.1 * i);
+  }
+  for (var strength in strengths) {
+    final double ds = 0.5 - strength;
+    swatch[(strength * 1000).round()] = Color.fromRGBO(
+      r + ((ds < 0 ? r : (255 - r)) * ds).round(),
+      g + ((ds < 0 ? g : (255 - g)) * ds).round(),
+      b + ((ds < 0 ? b : (255 - b)) * ds).round(),
+      1,
+    );
+  }
+  return MaterialColor(color.value, swatch);
+}
