@@ -1,191 +1,192 @@
-//With PHP backend
-const BASE_URL = "http://192.168.88.8/alexai/webadmin/";
-const String JSON_CONFIG = 'http://192.168.88.8/alexai/webadmin/upload/app_config.json';
+// With PHP backend
+const String BASE_URL = "http://192.168.88.8/alexai/webadmin/";
+const String JSON_CONFIG = "http://192.168.88.8/alexai/webadmin/upload/app_config.json";
 
-//without PHP backend
-const PURCHASE_CODE = '';
-const BASE_URL_OFFLINE = 'https://meetmighty.com/mightyweb-public/view/getjson.php?user=$PURCHASE_CODE';
+// Without PHP backend
+const String PURCHASE_CODE = "";
+const String BASE_URL_OFFLINE = "https://meetmighty.com/mightyweb-public/view/getjson.php?user=$PURCHASE_CODE";
 
-//preference
-const mOneSignalID = 'YOUR_ONE_SIGNAL_KEY';
+// Preference
+const String mOneSignalID = "ONESIGNAL_APP_ID"; // Key for shared preferences
 
-//AdmobId
-const adMobBannerId = "YOUR_ADMOB_BANNER_ID";
-const adMobInterstitialId = "YOUR_INTERSTITIAL_ID";
-const adMobBannerIdIos = "YOUR_ADMOB_BANNER_ID_IOS";
-const adMobInterstitialIdIos = "YOUR_INTERSTITIAL_ID_IOS";
+// AdMob IDs
+const String AD_MOB_BANNER_ID = "admobBannerID";
+const String AD_MOB_INTERSTITIAL_ID = "admobIntentialID";
+const String AD_MOB_BANNER_ID_IOS = "admobBannerIDIOS";
+const String AD_MOB_INTERSTITIAL_ID_IOS = "admobIntentialIDIOS";
 
-// Facebook
-const FACEBOOK_KEY = 'ADD_FACEBOOK_KEY';
-const fbBannerId = "ADD_FB_BANNER_ID";
-const fbBannerIdIos = "";
-const fbInterstitialId = "ADD_FB_INTERSTITIAL_ID";
-const fbInterstitialIdIos = "";
+// Facebook Ads
+const String FACEBOOK_BANNER_PLACEMENT_ID = "facebookBannerID";
+const String FACEBOOK_INTERSTITIAL_PLACEMENT_ID = "facebookIntentialID";
+const String FACEBOOK_BANNER_PLACEMENT_ID_IOS = "facebookBannerIDIOS";
+const String FACEBOOK_INTERSTITIAL_PLACEMENT_ID_IOS = "facebookIntentialIDIOS";
 
-const APPNAME = 'appName';
-const APPLOGO = 'appLogo';
-const URL = 'url';
-const ISFULLSCREEN = 'ISFULLSCREEN';
-const IS_JAVASCRIPT_ENABLE = 'isJavascriptEnable';
-const IS_SPLASH_SCREEN = 'isSplashScreen';
-const APP_LANGUAGE = 'appLanuguage';
-const IS_ZOOM_FUNCTIONALITY = 'isZoomFunctionality';
-const NAVIGATIONSTYLE = 'NAVIGATIONSTYLE';
-const HEADERSTYLE = 'HEADERSTYLE';
-const IS_WEBRTC = 'IS_WEBRTC';
-const IS_WALKTHROUGH = 'IS_WALKTHROUGH';
-const WALKTHROUGH = 'WALKTHROUGH';
-const FLOATING_LOGO = 'FLOATING_LOGO';
-const IS_FLOATING = 'IS_FLOATING';
-const FLOATING_STYLE = 'FLOATING_STYLE';
-const FLOATING_DATA = 'FLOATING_DATA';
-const TAB_BAR_STYLE = 'TAB_BAR_STYLE';
-const IS_PULL_TO_REFRESH = 'IS_PULL_TO_REFRESH';
-const IS_COOKIE = 'IS_COOKIE';
-const BOTTOM_NAVIGATION_STYLE = 'BOTTOM_NAVIGATION_STYLE';
-const WALK_THROUGH_STYLE = 'WALK_THROUGH_STYLE';
-const IS_Exit_POP_UP = 'IS_Exit_POP_UP';
-const DISABLE_HEADER = 'DISABLE_HEADER';
-const DISABLE_FOOTER = 'DISABLE_FOOTER';
+const String ADD_TYPE = "ads_type";
+const String NONE = "none";
+const String isGoogleAds = "admob";
+const String isFacebookAds = "facebook";
 
-const AD_MOB_BANNER_ID = 'admobBannerID';
-const AD_MOB_INTERSTITIAL_ID = 'admobIntentialID';
-const AD_MOB_BANNER_ID_IOS = 'admobBannerIDIOS';
-const AD_MOB_INTERSTITIAL_ID_IOS = 'admobIntentialIDIOS';
+// Theme colors
+const String APP_PRIMARY_COLOR = "PRIMARY_COLOR";
+const String APP_SECONDARY_COLOR = "SECONDARY_COLOR";
+const String APP_DEFAULT_PRIMARY_COLOR = "#3788FF"; // From app_config.json
+const String APP_DEFAULT_SECONDARY_COLOR = "#4581E8"; // From app_config.json
+const String APP_SCAFFOLD_DARK_COLOR = "#121212";
+const String APP_CARD_DARK_COLOR = "#1E1E1E";
 
-const FACEBOOK_BANNER_PLACEMENT_ID = "facebookBannerID";
-const FACEBOOK_INTERSTITIAL_PLACEMENT_ID = "facebookIntentialID";
-const FACEBOOK_BANNER_PLACEMENT_ID_IOS = "facebookBannerIDIOS";
-const FACEBOOK_INTERSTITIAL_PLACEMENT_ID_IOS = "facebookIntentialIDIOS";
+// App configuration
+const String APPNAME = "app_name";
+const String APPLOGO = "app_logo";
+const String URL = "url";
+const String ISFULLSCREEN = "isFullscreen";
+const String IS_JAVASCRIPT_ENABLE = "isJavascriptEnable";
+const String IS_SPLASH_SCREEN = "isSplashScreen";
+const String APP_LANGUAGE = "appLanuguage";
+const String IS_ZOOM_FUNCTIONALITY = "isZoomFunctionality";
+const String NAVIGATIONSTYLE = "navigationStyle";
+const String HEADERSTYLE = "header_style";
+const String IS_WEBRTC = "is_webrtc";
+const String IS_WALKTHROUGH = "is_walkthrough";
+const String WALKTHROUGH = "walkthrough";
+const String FLOATING_LOGO = "floating_logo";
+const String IS_FLOATING = "is_floating_button";
+const String FLOATING_STYLE = "floating_button_style";
+const String FLOATING_DATA = "floating_button";
+const String TAB_BAR_STYLE = "tab_style";
+const String IS_PULL_TO_REFRESH = "is_pull_refresh";
+const String IS_COOKIE = "clear_cookie";
+const String BOTTOM_NAVIGATION_STYLE = "bottom_navigation";
+const String WALK_THROUGH_STYLE = "walkthrough_style";
+const String IS_Exit_POP_UP = "isExitPopupScreen";
+const String DISABLE_HEADER = "disable_header";
+const String DISABLE_FOOTER = "disable_footer";
 
-const ADD_TYPE = 'ads_type';
-const NONE = 'none';
+// Loader
+const String LOADER_STYLE = "loaderStyle";
+const String IS_LOADER = "is_progressbar";
 
-String isGoogleAds = "admob";
-String isFacebookAds = "facebook";
+// Theme
+const String THEME_STYLE = "themeStyle";
+const String GRADIENT1 = "gradientColor1";
+const String GRADIENT2 = "gradientColor2";
+const String CUSTOM_COLOR = "customColor";
 
-const LOADER_STYLE = 'loaderStyle';
-const IS_LOADER = 'is_progressbar';
+// About
+const String IS_SHOW_ABOUT = "isShowAbout";
+const String WHATS_APP_NUMBER = "whatsAppNumber";
+const String INSTA_GRAM_URL = "instagramUrl";
+const String TWITTER_URL = "twitterUrl";
+const String FACEBOOK_URL = "facebookUrl";
+const String CALL_NUMBER = "callNumber";
+const String SKYPE = "skype";
+const String SNAPCHAT = "snapchat";
+const String YOUTUBE = "youtube";
+const String MESSENGER = "messenger";
+const String COPYRIGHT = "copyright";
+const String DESCRIPTION = "description";
 
-const THEME_STYLE = 'themeStyle';
-const GRADIENT1 = 'GRADIENT1';
-const GRADIENT2 = 'GRADIENT2';
-const CUSTOM_COLOR = 'customColor';
+// Menu
+const String MENU_STYLE = "menu_style";
+const String LEFTICON = "lefticon";
+const String RIGHTICON = "righticon";
+const String BOTTOMMENU = "bottom_menu";
+const String BOTTOMSIDEMENU = "bottom_side_menu";
 
-const IS_SHOW_ABOUT = 'isShowAbout';
-const WHATS_APP_NUMBER = 'whatsAppNumber';
-const INSTA_GRAM_URL = 'instagramUrl';
-const TWITTER_URL = 'twitterUrl';
-const FACEBOOK_URL = 'facebookUrl';
-const CALL_NUMBER = 'callNumber';
-const SKYPE = 'skype';
-const SNAPCHAT = 'snapchat';
-const YOUTUBE = 'youtube';
-const MESSENGER = 'messenger';
-const COPYRIGHT = 'copyright';
-const DESCRIPTION = 'description';
+// OneSignal
+const String ONESIGNAL = "onesignal_configuration";
+const String IS_FIRST_TIME = "IS_FIRST_TIME";
 
-const MENU_STYLE = 'menu_Style';
+// Other
+const String IS_FROM_TRY_WEBSITE = "is_from_try_website";
+const String DETAIL_PAGE_VARIANT = "DetailPageVariant";
+const String DETAIL_PAGE_VARIANT1 = "DetailPageVariant1";
+const String THEME_VARIANT = "ThemeVariant";
+const String LOADER_VARIANT = "LoaderVariant";
+const String isDarkModeOnPref = "isDarkModeOnPref";
+const String USER_AGENT = "user_agent";
+const String TABS = "tabs";
+const String PAGES = "pages";
 
-const LEFTICON = 'leftIcon';
-const RIGHTICON = 'righticon';
-const BOTTOMMENU = 'BOTTOMMENU';
-const BOTTOMSIDEMENU = 'BOTTOMSIDEMENU';
+// Icon values
+const String RIGHT_ICON_RELOAD = "ic_reload";
+const String RIGHT_ICON_SHARE = "ic_share";
+const String RIGHT_ICON_CLOSE = "ic_close";
+const String RIGHT_ICON_EXIT = "ic_exit";
+const String RIGHT_ICON_SEARCH = "ic_search";
+const String RIGHT_ICON_SETTINGS = "ic_settings";
+const String RIGHT_ICON_CART = "ic_cart";
+const String RIGHT_ICON_PROFILE = "ic_profile";
+const String RIGHT_ICON_MESSAGE = "ic_message";
+const String RIGHT_ICON_NOTIFICATION = "ic_notification";
+const String RIGHT_ICON_USER = "ic_user";
+const String RIGHT_ICON_LIST = "ic_list";
+const String RIGHT_ICON_GRID = "ic_grid";
+const String RIGHT_ICON_FILTER = "ic_filter";
+const String RIGHT_ICON_FAVOURITE = "ic_favourite";
+const String RIGHT_ICON_CHAT = "ic_chat";
+const String RIGHT_ICON_ABOUT = "ic_about";
+const String RIGHT_ICON_SCAN = "ic_qr_code";
 
-const ONESINGLE = 'onesingal';
-const IS_FIRST_TIME = 'IS_FIRST_TIME';
+const String LEFT_ICON_BACK_1 = "ic_back1";
+const String LEFT_ICON_BACK_2 = "ic_back2";
+const String LEFT_ICON_HOME = "ic_home";
+const String LEFT_ICON_PROFILE = "ic_profile";
+const String LEFT_ICON_CLOSE = "ic_close";
+const String LEFT_ICON_SEARCH = "ic_search";
+const String LEFT_ICON_ADD = "ic_add";
 
-const IS_FROM_TRY_WEBSITE = 'is_from_try_website';
-const DETAIL_PAGE_VARIANT = 'DetailPageVariant';
-const DETAIL_PAGE_VARIANT1 = 'DetailPageVariant1';
-const THEME_VARIANT = 'ThemeVariant';
-const LOADER_VARIANT = 'LoaderVariant';
-const isDarkModeOnPref = 'isDarkModeOnPref';
+const String HEADER_STYLE_CENTER = "center";
+const String HEADER_STYLE_EMPTY = "empty_header";
 
-const USER_AGENT = 'USER_AGENT';
-const TABS = 'TABS';
-const PAGES = 'PAGES';
+const String THEME_STYLE_GRADIENT = "Gradient";
+const String THEME_STYLE_DEFAULT = "Default";
+const String THEME_STYLE_CUSTOM = "Custom";
 
-// Check Value
-const RIGHT_ICON_RELOAD = "ic_reload";
-const RIGHT_ICON_SHARE = "ic_share";
-const RIGHT_ICON_CLOSE = "ic_close";
-const RIGHT_ICON_EXIT = "ic_exit";
-const RIGHT_ICON_SEARCH = "ic_search";
-const RIGHT_ICON_SETTINGS = "ic_settings";
-const RIGHT_ICON_CART = "ic_cart";
-const RIGHT_ICON_PROFILE = "ic_profile";
-const RIGHT_ICON_MESSAGE = "ic_message";
-const RIGHT_ICON_NOTIFICATION = "ic_notification";
-const RIGHT_ICON_USER = "ic_user";
-const RIGHT_ICON_LIST = "ic_list";
-const RIGHT_ICON_GRID = "ic_grid";
-const RIGHT_ICON_FILTER = "ic_filter";
-const RIGHT_ICON_FAVOURITE = "ic_favourite";
-const RIGHT_ICON_CHAT = "ic_chat";
-const RIGHT_ICON_ABOUT = "ic_about";
-const RIGHT_ICON_SCAN = "ic_qr_code";
+const String NAVIGATION_STYLE_SIDE_DRAWER = "sidedrawer";
+const String NAVIGATION_STYLE_BOTTOM_NAVIGATION = "bottom_navigation";
+const String NAVIGATION_STYLE_FULL_SCREEN = "fullscreen";
+const String NAVIGATION_STYLE_TAB_BAR = "tabs";
+const String NAVIGATION_STYLE_SIDE_DRAWER_TABS = "sidedrawer_tabs";
+const String NAVIGATION_STYLE_BOTTOM_NAVIGATION_SIDE_DRAWER = "sidedrawer_bottom_navigation";
 
-const LEFT_ICON_BACK_1 = "ic_back1";
-const LEFT_ICON_BACK_2 = "ic_back2";
-const LEFT_ICON_HOME = "ic_home";
-const LEFT_ICON_PROFILE = "ic_profile";
-const LEFT_ICON_CLOSE = "ic_close";
-const LEFT_ICON_SEARCH = "ic_search";
-const LEFT_ICON_ADD = "ic_add";
+const String SIMPLE_TAB = "simple_tab";
+const String TAB_WITH_ICON = "tab_with_icon";
+const String TAB_WITH_ICON_TITLE = "tab_with_title_icon";
 
-const HEADER_STYLE_CENTER = "center";
-const HEADER_STYLE_EMPTY = "empty_header";
+const String WALK_THROUGH_1 = "walkthrough_style_1";
+const String WALK_THROUGH_2 = "walkthrough_style_2";
+const String WALK_THROUGH_3 = "walkthrough_style_3";
 
-const THEME_STYLE_GRADIENT = "Gradient";
-const THEME_STYLE_DEFAULT = "Default";
-const THEME_STYLE_CUSTOM = "Custom";
+const String BOTTOM_NAVIGATION_1 = "bottom_navigation_1";
+const String BOTTOM_NAVIGATION2 = "bottom_navigation_2";
+const String BOTTOM_NAVIGATION3 = "bottom_navigation_3";
 
-const NAVIGATION_STYLE_SIDE_DRAWER = "sidedrawer";
-const NAVIGATION_STYLE_BOTTOM_NAVIGATION = "bottom_navigation";
-const NAVIGATION_STYLE_FULL_SCREEN = "fullscreen";
-const NAVIGATION_STYLE_TAB_BAR = "tabs";
-const NAVIGATION_STYLE_SIDE_DRAWER_TABS = "sidedrawer_tabs";
-const NAVIGATION_STYLE_BOTTOM_NAVIGATION_SIDE_DRAWER = "sidedrawer_bottom_navigation";
+const String SPLASH_FIRST_COLOR = "first_color";
+const String SPLASH_SECOND_COLOR = "second_color";
+const String SPLASH_TITLE = "title";
+const String SPLASH_ENABLE_TITLE = "enable_title";
+const String SPLASH_ENABLE_LOGO = "enable_logo";
+const String SPLASH_ENABLE_BACKGROUND = "enable_background";
+const String SPLASH_LOGO_URL = "splash_logo_url";
+const String SPLASH_TITLE_COLOR = "title_color";
+const String SPLASH_BACKGROUND_URL = "splash_background_url";
 
-const SIMPLE_TAB = "simple_tab";
-const TAB_WITH_ICON = "tab_with_icon";
-const TAB_WITH_ICON_TITLE = "tab_with_title_icon";
+const String EXIST_ICON = "exit_image_url";
+const String EXIST_TITLE = "title";
+const String EXIST_NEGATIVE_TEXT = "negative_text";
+const String EXIST_POSITIVE_TEXT = "positive_text";
+const String EXIST_ENABLE_ICON = "enable_image";
 
-const WALK_THROUGH_1 = "walkthrough_style_1";
-const WALK_THROUGH_2 = "walkthrough_style_2";
-const WALK_THROUGH_3 = "walkthrough_style_3";
+const String SHARE_CONTENT = "share_content";
 
-const BOTTOM_NAVIGATION_1 = "bottom_navigation_1";
-const BOTTOM_NAVIGATION2 = "bottom_navigation_2";
-const BOTTOM_NAVIGATION3 = "bottom_navigation_3";
-
-const SPLASH_FIRST_COLOR = 'first_color';
-const SPLASH_SECOND_COLOR = 'second_color';
-const SPLASH_TITLE = 'title';
-const SPLASH_ENABLE_TITLE = 'enable_title';
-const SPLASH_ENABLE_LOGO = 'enable_logo';
-const SPLASH_ENABLE_BACKGROUND = 'enable_background';
-const SPLASH_LOGO_URL = 'splash_logo_url';
-const SPLASH_TITLE_COLOR = 'title_color';
-const SPLASH_BACKGROUND_URL = 'splash_background_url';
-
-const EXIST_ICON = 'exit_image_url';
-const EXIST_TITLE = 'EXIST_TITLE';
-const EXIST_NEGATIVE_TEXT = 'negative_text';
-const EXIST_POSITIVE_TEXT = 'positive_text';
-const EXIST_ENABLE_ICON = 'enable_image';
-
-const SHARE_CONTENT = 'share_content';
-
-//Theme color
+// Theme color names
 List<String> themeName = [
-  'Theme1',
-  'Theme2',
-  'Theme3',
-  'Theme4',
-  'Theme5',
-  'Theme6',
+  "Theme1",
+  "Theme2",
+  "Theme3",
+  "Theme4",
+  "Theme5",
+  "Theme6",
   "Theme7",
   "Theme8",
   "Theme9",
@@ -213,7 +214,7 @@ List<String> colorName = [
   "#212121",
   "#263238",
   "#dd2c00",
-  '#1b5ddb'
+  "#1b5ddb",
 ];
 
 List<String> loaderName = [
@@ -233,14 +234,6 @@ List<String> loaderName = [
 ];
 
 // Visibility
-const EnableHome = true;
-const EnableDemo = false;
-const EnableMode = true;
-
-const String APP_PRIMARY_COLOR = 'PRIMARY_COLOR';
-const String APP_SECONDARY_COLOR = 'SECONDARY_COLOR';
-const String APP_DEFAULT_COLOR = '#6200EE';
-const String APP_DEFAULT_COLOR = '#03DAC6';
-const String APP_DEFAULT_COLOR_DARK = '#121212';
-const String APP_CARD_COLOR_DARK = '#1E1E1E';
-const String mOneSignalAppId = ''; 
+const bool EnableHome = true;
+const bool EnableDemo = false;
+const bool EnableMode = true;

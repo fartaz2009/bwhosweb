@@ -41,7 +41,7 @@ import 'dart:async';
         OneSignal.Debug.setLogLevel(Level.verbose);
         OneSignal.Debug.setAlertLevel(Level.none);
         OneSignal.consentRequired(false);
-        String oneSignalAppId = appConfig['onesignal_configuration']?['appId'] ?? getStringAsync(mOneSignalAppId, defaultValue: '');
+        String oneSignalAppId = appConfig['onesignal_configuration']?['app_id'] ?? '';
         if (oneSignalAppId.isNotEmpty) {
           OneSignal.initialize(oneSignalAppId);
           OneSignal.Notifications.requestPermission(true);

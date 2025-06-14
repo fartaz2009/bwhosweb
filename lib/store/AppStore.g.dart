@@ -9,17 +9,25 @@ part of 'AppStore.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$AppStore on AppStoreBase, Store {
+  Computed<bool>? _$isDarkModeComputed;
+
+  @override
+  bool get isDarkMode =>
+      (_$isDarkModeComputed ??= Computed<bool>(() => super.isDarkMode,
+              name: 'AppStoreBase.isDarkMode'))
+          .value;
+
   late final _$isDarkModeOnAtom =
       Atom(name: 'AppStoreBase.isDarkModeOn', context: context);
 
   @override
-  bool? get isDarkModeOn {
+  bool get isDarkModeOn {
     _$isDarkModeOnAtom.reportRead();
     return super.isDarkModeOn;
   }
 
   @override
-  set isDarkModeOn(bool? value) {
+  set isDarkModeOn(bool value) {
     _$isDarkModeOnAtom.reportWrite(value, super.isDarkModeOn, () {
       super.isDarkModeOn = value;
     });
@@ -141,13 +149,13 @@ mixin _$AppStore on AppStoreBase, Store {
       Atom(name: 'AppStoreBase.mTabList', context: context);
 
   @override
-  List<TabsResponse> get mTabList {
+  ObservableList<TabsResponse> get mTabList {
     _$mTabListAtom.reportRead();
     return super.mTabList;
   }
 
   @override
-  set mTabList(List<TabsResponse> value) {
+  set mTabList(ObservableList<TabsResponse> value) {
     _$mTabListAtom.reportWrite(value, super.mTabList, () {
       super.mTabList = value;
     });
@@ -157,13 +165,13 @@ mixin _$AppStore on AppStoreBase, Store {
       Atom(name: 'AppStoreBase.mFABList', context: context);
 
   @override
-  List<FloatingButton> get mFABList {
+  ObservableList<FloatingButton> get mFABList {
     _$mFABListAtom.reportRead();
     return super.mFABList;
   }
 
   @override
-  set mFABList(List<FloatingButton> value) {
+  set mFABList(ObservableList<FloatingButton> value) {
     _$mFABListAtom.reportWrite(value, super.mFABList, () {
       super.mFABList = value;
     });
@@ -173,13 +181,13 @@ mixin _$AppStore on AppStoreBase, Store {
       Atom(name: 'AppStoreBase.mOnBoardList', context: context);
 
   @override
-  List<Walkthrough> get mOnBoardList {
+  ObservableList<Walkthrough> get mOnBoardList {
     _$mOnBoardListAtom.reportRead();
     return super.mOnBoardList;
   }
 
   @override
-  set mOnBoardList(List<Walkthrough> value) {
+  set mOnBoardList(ObservableList<Walkthrough> value) {
     _$mOnBoardListAtom.reportWrite(value, super.mOnBoardList, () {
       super.mOnBoardList = value;
     });
@@ -189,13 +197,13 @@ mixin _$AppStore on AppStoreBase, Store {
       Atom(name: 'AppStoreBase.mBottomNavigationList', context: context);
 
   @override
-  List<MenuStyleModel> get mBottomNavigationList {
+  ObservableList<MenuStyleModel> get mBottomNavigationList {
     _$mBottomNavigationListAtom.reportRead();
     return super.mBottomNavigationList;
   }
 
   @override
-  set mBottomNavigationList(List<MenuStyleModel> value) {
+  set mBottomNavigationList(ObservableList<MenuStyleModel> value) {
     _$mBottomNavigationListAtom.reportWrite(value, super.mBottomNavigationList,
         () {
       super.mBottomNavigationList = value;
@@ -206,13 +214,13 @@ mixin _$AppStore on AppStoreBase, Store {
       Atom(name: 'AppStoreBase.mPageList', context: context);
 
   @override
-  List<TabsResponse> get mPageList {
+  ObservableList<TabsResponse> get mPageList {
     _$mPageListAtom.reportRead();
     return super.mPageList;
   }
 
   @override
-  set mPageList(List<TabsResponse> value) {
+  set mPageList(ObservableList<TabsResponse> value) {
     _$mPageListAtom.reportWrite(value, super.mPageList, () {
       super.mPageList = value;
     });
@@ -222,13 +230,13 @@ mixin _$AppStore on AppStoreBase, Store {
       Atom(name: 'AppStoreBase.mMenuList', context: context);
 
   @override
-  List<MenuStyleModel> get mMenuList {
+  ObservableList<MenuStyleModel> get mMenuList {
     _$mMenuListAtom.reportRead();
     return super.mMenuList;
   }
 
   @override
-  set mMenuList(List<MenuStyleModel> value) {
+  set mMenuList(ObservableList<MenuStyleModel> value) {
     _$mMenuListAtom.reportWrite(value, super.mMenuList, () {
       super.mMenuList = value;
     });
@@ -358,11 +366,11 @@ mixin _$AppStore on AppStoreBase, Store {
   }
 
   @override
-  void addToBottomNavigationLis(MenuStyleModel val) {
+  void addToBottomNavigationList(MenuStyleModel val) {
     final _$actionInfo = _$AppStoreBaseActionController.startAction(
-        name: 'AppStoreBase.addToBottomNavigationLis');
+        name: 'AppStoreBase.addToBottomNavigationList');
     try {
-      return super.addToBottomNavigationLis(val);
+      return super.addToBottomNavigationList(val);
     } finally {
       _$AppStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -440,7 +448,8 @@ mOnBoardList: ${mOnBoardList},
 mBottomNavigationList: ${mBottomNavigationList},
 mPageList: ${mPageList},
 mMenuList: ${mMenuList},
-deepLinkURL: ${deepLinkURL}
+deepLinkURL: ${deepLinkURL},
+isDarkMode: ${isDarkMode}
     ''';
   }
 }
