@@ -91,7 +91,7 @@ class SideMenuComponentState extends State<SideMenuComponent> {
               26.height,
               mDrawerOption(appLocalization.translate('lbl_home')!, Icons.home_filled, onTap: () {
                 if (getStringAsync(NAVIGATIONSTYLE) == NAVIGATION_STYLE_BOTTOM_NAVIGATION_SIDE_DRAWER) {
-		  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const DashBoardScreen()));                 
+		  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DashBoardScreen()));                 
                 } else
                   HomeScreen().launch(context, isNewTask: true);
               }).visible(EnableHome == true),

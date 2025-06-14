@@ -52,7 +52,7 @@ class DataScreenState extends State<DataScreen> {
                   if (snapshot.data!.appconfiguration!.isSplashScreen == "true")
                     return SplashScreen();
                   else
-                    return const DashBoardScreen();
+                    return DashBoardScreen();
                 } else {
                   return ErrorScreen(error: appLocalization!.translate('msg_add_configuration'));
                 }

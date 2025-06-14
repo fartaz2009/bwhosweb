@@ -38,83 +38,46 @@ import 'dart:async';
       appStore.setLanguage(getStringAsync(APP_LANGUAGE, defaultValue: appConfig['appconfiguration']?['appLanuguage'] ?? 'en'));
 
       if (isMobile) {
-        OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
-        OneSignal.Debug.setAlertLevel(OSLogLevel.none);
+        OneSignal.Debug.setLogLevel(Level.verbose);
+        OneSignal.Debug.setAlertLevel(Level.none);
         OneSignal.consentRequired(false);
-        String oneSignalAppId = appConfig['onesignal_configuration']?['app_id'] ?? getStringAsync(ONESIGNAL_APP_ID, defaultValue: mOneSignalID);
+        String oneSignalAppId = appConfig['onesignal_configuration']?['appId'] ?? getStringAsync(mOneSignalAppId, defaultValue: '');
         if (oneSignalAppId.isNotEmpty) {
           OneSignal.initialize(oneSignalAppId);
           OneSignal.Notifications.requestPermission(true);
-          OneSignal.Notifications.addForegroundWillDisplayListener((event) {
-            print('NOTIFICATION WILL DISPLAY LISTENER CALLED WITH: ${event.notification.jsonRepresentation()}');
-            event.preventDefault();
-            event.notification.display();
-          });
         }
       }
-      runApp(MyApp());
+      runApp(const MyApp());
     }
 
-    class MyApp extends StatefulWidget {
-      MyApp();
-
-      @override
-      _MyAppState createState() => _MyAppState();
-    }
-
-    class _MyAppState extends State<MyApp> {
-      late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
-
-      @override
-      void initState() {
-        super.initState();
-        setStatusBarColor(appStore.primaryColors, statusBarBrightness: Brightness.light);
-        _connectivitySubscription = Connectivity().onConnectivityChanged.listen((List<ConnectivityResult> e) async {
-          if (e.contains(ConnectivityResult.none)) {
-            appStore.setConnectionState(ConnectivityResult.none);
-            log('not connected');
-            push(NoInternetConnection());
-          } else {
-            appStore.setConnectionState(e.first);
-            pop();
-            log('connected');
-          }
-        });
-      }
-
-      @override
-      void dispose() {
-        super.dispose();
-        _connectivitySubscription.cancel();
-      }
+    class MyApp extends StatelessWidget {
+      const MyApp({super.key});
 
       @override
       Widget build(BuildContext context) {
         return Observer(
-          builder: (context) {
-            return MaterialApp(
-              debugShowCheckedModeBanner: false,
-              home: appStore.isNetworkAvailable ? DataScreen() : NoInternetConnection(),
-              supportedLocales: Language.languagesLocale(),
-              navigatorKey: navigatorKey,
-              localizationsDelegates: [
-                AppLocalizations.delegate,
-                GlobalMaterialLocalizations.delegate,
-                GlobalWidgetsLocalizations.delegate,
-              ],
-              localeResolutionCallback: (locale, supportedLocales) => locale,
-              locale: Locale(appConfig['appconfiguration']?['appLanuguage'] ?? getStringAsync(APP_LANGUAGE, defaultValue: 'en')),
-              theme: lightTheme().copyWith(
-                primaryColor: Color(int.parse((appConfig['splash_configuration']?['first_color'] ?? '#3788ff').replaceAll('#', '0xFF'))),
-                colorScheme: ColorScheme.fromSwatch().copyWith(
-                  secondary: Color(int.parse((appConfig['splash_configuration']?['second_color'] ?? '#4581e8').replaceAll('#', '0xFF'))),
-                ),
+          builder: (context) => MaterialApp(
+            debugShowCheckedModeBanner: false,
+            home: appStore.isOnline ? DataScreen() : const NoInternetConnection(),
+            supportedLocales: LanguageDataModel().languagesLocale(),
+            navigatorKey: navigatorKey,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+            ],
+            localeResolutionCallback: (locale, _) => locale,
+            locale: Locale(appConfig['appconfiguration']?['appLanuguage'] ?? getStringAsync('en')),
+            theme: lightTheme().copyWith(
+              primaryColor: Color(int.parseColor((appConfig['splash_configuration']?['first_color'] ?? '#3788FF').replaceAll('#', '0xFF'))),
+              colorScheme: ColorScheme.fromSwatch().copyWith(
+                secondary: Color(int.parseColor((vappConfig['splash_configuration']?['second_color'] ?? '#4581EF8').replace('#', '0xFF'))),
               ),
-              darkTheme: darkTheme(),
-              themeMode: appStore.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-              scrollBehavior: SBehavior(),
-            );
-          },
-        );
-      }
+            ),
+            darkTheme: darkTheme(),
+            themeMode: appStore.isDarkModeOn ? ThemeMode.dark : ThemeMode.light,
+            scrollBehavior: const SBehavior(),
+            ),
+          );
+        }
     }

@@ -18,7 +18,7 @@ import 'dart:convert';
 
       final String? url;
 
-      DashBoardScreen({this.url});
+      const DashBoardScreen({this.url, super.key});
 
       @override
       DashBoardScreenState createState() => DashBoardScreenState();
@@ -34,14 +34,14 @@ import 'dart:convert';
         init();
       }
 
-      init() async {
+      Future<void> init() async {
         setStatusBarColor(appStore.primaryColors, statusBarBrightness: Brightness.light);
 
         if (isMobile) {
           OneSignal.Notifications.addClickListener((event) {
-            print("Notification URL: ${event.notification.launchUrl.validate()}");
-            if (!event.notification.launchUrl.isEmptyOrNull) {
-              WebScreen(mInitialUrl: event.notification.launchUrl.validate(), mHeading: "").launch(context);
+            print("Notification URL: ${event.notification.launchUrl ?? ''}");
+            if (event.notification.launchUrl != null && event.notification.launchUrl!.isNotEmpty) {
+              WebScreen(mInitialUrl: event.notification.launchUrl!, mHeading: "").launch(context);
             }
           });
         }
