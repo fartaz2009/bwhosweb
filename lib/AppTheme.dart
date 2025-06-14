@@ -1,50 +1,76 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../main.dart';
+      import 'package:nb_utils/nb_utils.dart';
 
-class AppTheme {
-  AppTheme._();
+      import '../utils/constant.dart';
 
-  static final ThemeData lightTheme = ThemeData(
-    useMaterial3: false,
-    scaffoldBackgroundColor: Colors.white,
-    primaryColor: appStore.primaryColors,
-    hoverColor: Colors.grey,
-    fontFamily: GoogleFonts.poppins().fontFamily,
-    appBarTheme: AppBarTheme(
-      color: appStore.primaryColors,
-     // brightness: appStore.primaryColors.isDark() ? Brightness.dark : Brightness.light,
-    ),
-    iconTheme: IconThemeData(color: Colors.black),
-    cardTheme: CardThemeData(color: Colors.white),
-  ).copyWith(
-    pageTransitionsTheme: PageTransitionsTheme(
-      builders: <TargetPlatform, PageTransitionsBuilder>{
-        TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
-        TargetPlatform.linux: OpenUpwardsPageTransitionsBuilder(),
-        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-      },
-    ),
-  );
+      ThemeData lightTheme() {
+        return ThemeData(
+          primarySwatch: createMaterialColor(getStringAsync(PRIMARY_COLOR, defaultValue: defaultPrimaryColor).toColor()),
+          scaffoldBackgroundColor: Colors.white,
+          fontFamily: 'Poppins',
+          iconTheme: IconThemeData(color: Colors.black),
+          textTheme: TextTheme(
+            bodyLarge: TextStyle(color: Colors.black87),
+            bodyMedium: TextStyle(color: Colors.black87),
+          ),
+          colorScheme: ColorScheme.light(
+            primary: createMaterialColor(getStringAsync(PRIMARY_COLOR, defaultValue: defaultPrimaryColor).toColor()),
+            secondary: createMaterialColor(getStringAsync(SECONDARY_COLOR, defaultValue: defaultSecondaryColor).toColor()),
+          ),
+          dialogBackgroundColor: Colors.white,
+          dividerColor: Colors.grey.shade200,
+          cardColor: Colors.white,
+          appBarTheme: AppBarTheme(
+            backgroundColor: Colors.white,
+            elevation: 0.5,
+            iconTheme: IconThemeData(color: Colors.black),
+            titleTextStyle: TextStyle(color: Colors.black87, fontSize: 18, fontWeight: FontWeight.w600),
+          ),
+        );
+      }
 
-  static final ThemeData darkTheme = ThemeData(
-    useMaterial3: false,
-    scaffoldBackgroundColor: Color(0xFF131d25),
-    appBarTheme: AppBarTheme(
-      color: appStore.primaryColors,
-      //brightness: appStore.primaryColors.isDark() ? Brightness.dark : Brightness.light,
-    ),
-    primaryColor: appStore.primaryColors,
-    fontFamily: GoogleFonts.poppins().fontFamily,
-    cardTheme: CardThemeData(color: Color(0xFF1D2939)),
-    iconTheme: IconThemeData(color: Colors.white70),
-  ).copyWith(
-    pageTransitionsTheme: PageTransitionsTheme(
-      builders: <TargetPlatform, PageTransitionsBuilder>{
-        TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
-        TargetPlatform.linux: OpenUpwardsPageTransitionsBuilder(),
-        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-      },
-    ),
-  );
-}
+      ThemeData darkTheme() {
+        return ThemeData(
+          primarySwatch: createMaterialColor(getStringAsync(PRIMARY_COLOR, defaultValue: defaultPrimaryColor).toColor()),
+          scaffoldBackgroundColor: scaffoldDarkColor,
+          fontFamily: 'Poppins',
+          iconTheme: IconThemeData(color: Colors.white),
+          textTheme: TextTheme(
+            bodyLarge: TextStyle(color: Colors.white70),
+            bodyMedium: TextStyle(color: Colors.white70),
+          ),
+          colorScheme: ColorScheme.dark(
+            primary: createMaterialColor(getStringAsync(PRIMARY_COLOR, defaultValue: defaultPrimaryColor).toColor()),
+            secondary: createMaterialColor(getStringAsync(SECONDARY_COLOR, defaultValue: defaultSecondaryColor).toColor()),
+          ),
+          dialogBackgroundColor: scaffoldDarkColor,
+          dividerColor: Colors.white12,
+          cardColor: cardDarkColor,
+          appBarTheme: AppBarTheme(
+            backgroundColor: scaffoldDarkColor,
+            elevation: 0.5,
+            iconTheme: IconThemeData(color: Colors.white),
+            titleTextStyle: TextStyle(color: Colors.white70, fontSize: 18, fontWeight: FontWeight.w600),
+          ),
+        );
+      }
+
+      MaterialColor createMaterialColor(Color color) {
+        List strengths = <double>[.05];
+        Map<int, Color> swatch = {};
+        final int r = color.red, g = color.green, b = color.blue;
+
+        for (int i = 1; i < 10; i++) {
+          strengths.add(0.1 * i);
+        }
+        for (var strength in strengths) {
+          final double ds = 0.5 - strength;
+          swatch[(strength * 1000).round()] = Color.fromRGBO(
+            r + ((ds < 0 ? r : (255 - r)) * ds).round(),
+            g + ((ds < 0 ? g : (255 - g)) * ds).round(),
+            b + ((ds < 0 ? b : (255 - b)) * ds).round(),
+            1,
+          );
+        }
+        return MaterialColor(color.value, swatch);
+      }
