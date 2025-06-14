@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import '../screen/DashboardScreen.dart';
+import '../screen/DashBoardScreen.dart';
 import '../app_localizations.dart';
 import '../component/SubMenuComponent.dart';
 import '../main.dart';
@@ -91,7 +91,7 @@ class SideMenuComponentState extends State<SideMenuComponent> {
               26.height,
               mDrawerOption(appLocalization.translate('lbl_home')!, Icons.home_filled, onTap: () {
                 if (getStringAsync(NAVIGATIONSTYLE) == NAVIGATION_STYLE_BOTTOM_NAVIGATION_SIDE_DRAWER) {
-		  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const DashboardScreen()));                 
+		  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const DashBoardScreen()));                 
                 } else
                   HomeScreen().launch(context, isNewTask: true);
               }).visible(EnableHome == true),

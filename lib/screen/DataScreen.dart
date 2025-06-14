@@ -5,7 +5,7 @@ import '../component/DeepLinkWidget.dart';
 import '../main.dart';
 import '../model/MainResponse.dart';
 import '../network/NetworkUtils.dart';
-import '../screen/DashboardScreen.dart';
+import '../screen/DashBoardScreen.dart';
 import '../screen/ErrorScreen.dart';
 import '../screen/SplashScreen.dart';
 import '../utils/bloc.dart';
@@ -52,7 +52,7 @@ class DataScreenState extends State<DataScreen> {
                   if (snapshot.data!.appconfiguration!.isSplashScreen == "true")
                     return SplashScreen();
                   else
-                    return const DashboardScreen();
+                    return const DashBoardScreen();
                 } else {
                   return ErrorScreen(error: appLocalization!.translate('msg_add_configuration'));
                 }
