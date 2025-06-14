@@ -21,8 +21,12 @@ import 'dart:async';
     Map<String, dynamic> appConfig = {};
 
     Future<void> loadConfig() async {
-      final configString = await rootBundle.loadString('assets/app_config.json');
-      appConfig = jsonDecode(configString);
+      try {
+        final configString = await rootBundle.loadString('assets/app_config.json');
+        appConfig = jsonDecode(configString);
+      } catch (e) {
+        print('Error loading app_config.json: $e');
+      }
     }
 
     void main() async {
@@ -31,19 +35,22 @@ import 'dart:async';
       await initialize();
       await loadConfig();
       appStore.setDarkMode(aIsDarkMode: getBoolAsync(isDarkModeOnPref));
-      appStore.setLanguage(getStringAsync(APP_LANGUAGE, defaultValue: appConfig['appconfiguration']['appLanuguage'] ?? 'en'));
+      appStore.setLanguage(getStringAsync(APP_LANGUAGE, defaultValue: appConfig['appconfiguration']?['appLanuguage'] ?? 'en'));
 
       if (isMobile) {
         OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
         OneSignal.Debug.setAlertLevel(OSLogLevel.none);
         OneSignal.consentRequired(false);
-        OneSignal.initialize(appConfig['onesignal_configuration']['app_id'] ?? getStringAsync(ONESINGLE, defaultValue: mOneSignalID));
-        OneSignal.Notifications.requestPermission(true);
-        OneSignal.Notifications.addForegroundWillDisplayListener((event) {
-          print('NOTIFICATION WILL DISPLAY LISTENER CALLED WITH: ${event.notification.jsonRepresentation()}');
-          event.preventDefault();
-          event.notification.display();
-        });
+        String oneSignalAppId = appConfig['onesignal_configuration']?['app_id'] ?? getStringAsync(ONESIGNAL_APP_ID, defaultValue: mOneSignalID);
+        if (oneSignalAppId.isNotEmpty) {
+          OneSignal.initialize(oneSignalAppId);
+          OneSignal.Notifications.requestPermission(true);
+          OneSignal.Notifications.addForegroundWillDisplayListener((event) {
+            print('NOTIFICATION WILL DISPLAY LISTENER CALLED WITH: ${event.notification.jsonRepresentation()}');
+            event.preventDefault();
+            event.notification.display();
+          });
+        }
       }
       runApp(MyApp());
     }
@@ -83,29 +90,31 @@ import 'dart:async';
 
       @override
       Widget build(BuildContext context) {
-        return Observer(builder: (context) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            home: appStore.isNetworkAvailable ? DataScreen() : NoInternetConnection(),
-            supportedLocales: Language.languagesLocale(),
-            navigatorKey: navigatorKey,
-            localizationsDelegates: [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-            ],
-            localeResolutionCallback: (locale, supportedLocales) => locale,
-            locale: Locale(appConfig['appconfiguration']['appLanuguage'] ?? getStringAsync(APP_LANGUAGE, defaultValue: 'en')),
-            theme: AppTheme.lightTheme.copyWith(
-              primaryColor: Color(int.parse((appConfig['splash_configuration']['first_color'] ?? '#3788ff').replaceAll('#', '0xFF'))),
-              colorScheme: ColorScheme.fromSwatch().copyWith(
-                secondary: Color(int.parse((appConfig['splash_configuration']['second_color'] ?? '#4581e8').replaceAll('#', '0xFF'))),
+        return Observer(
+          builder: (context) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              home: appStore.isNetworkAvailable ? DataScreen() : NoInternetConnection(),
+              supportedLocales: Language.languagesLocale(),
+              navigatorKey: navigatorKey,
+              localizationsDelegates: [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+              ],
+              localeResolutionCallback: (locale, supportedLocales) => locale,
+              locale: Locale(appConfig['appconfiguration']?['appLanuguage'] ?? getStringAsync(APP_LANGUAGE, defaultValue: 'en')),
+              theme: lightTheme().copyWith(
+                primaryColor: Color(int.parse((appConfig['splash_configuration']?['first_color'] ?? '#3788ff').replaceAll('#', '0xFF'))),
+                colorScheme: ColorScheme.fromSwatch().copyWith(
+                  secondary: Color(int.parse((appConfig['splash_configuration']?['second_color'] ?? '#4581e8').replaceAll('#', '0xFF'))),
+                ),
               ),
-            ),
-            darkTheme: AppTheme.darkTheme,
-            themeMode: appStore.isDarkModeOn! ? ThemeMode.dark : ThemeMode.light,
-            scrollBehavior: SBehavior(),
-          );
-        });
+              darkTheme: darkTheme(),
+              themeMode: appStore.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+              scrollBehavior: SBehavior(),
+            );
+          },
+        );
       }
     }

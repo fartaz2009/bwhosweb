@@ -236,3 +236,10 @@ List<String> loaderName = [
 const EnableHome = true;
 const EnableDemo = false;
 const EnableMode = true;
+
+const String PRIMARY_COLOR = 'PRIMARY_COLOR';
+const String SECONDARY_COLOR = 'SECONDARY_COLOR';
+const String defaultPrimaryColor = '#6200EE';
+const String defaultSecondaryColor = '#03DAC6';
+const String scaffoldDarkColor = '#121212';
+const String cardDarkColor = '#1E1E1E';
